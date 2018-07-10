@@ -19,14 +19,10 @@ namespace PaylocityBenefitsChallenge.Entities
             FirstName = firstName;
             LastName = lastName;
             IsEmployee = isEmployee ?? false;
-            IsEligibleForDiscount = CheckIsEligibleForDiscount();
-        }
 
-        private bool CheckIsEligibleForDiscount()
-        {
             // employees and dependents whose first or last name starts with the character A are eligible
-            return FirstName.ToLower().StartsWith("a") || 
-                    LastName.ToLower().StartsWith("a");
+            IsEligibleForDiscount = FirstName.ToLower().StartsWith("a") ||
+                                    LastName.ToLower().StartsWith("a"); ;
         }
     }
 }
