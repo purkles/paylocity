@@ -7,12 +7,13 @@ namespace PaylocityBenefitsChallenge.Entities
 {
     public class BenefitsCostResult
     {
-        public decimal BenefitCostForEmployeeOnly;
+        public BenefitEmployee EmployeeData { get; set; }
+        public decimal BenefitCostForEmployeeOnly { get; internal set; }
         public decimal BenefitCostForDependentsOnly;
 
-        public decimal BenefitsCostPerYear;
-        public decimal TotalEmployeeCostPerPayPeriod;
-        public decimal TotalEmployeeCostPerYear;
+        public decimal TotalBenefitsCostPerYear { get; internal set; }
+        public decimal TotalEmployeeCostPerPayPeriod { get; internal set; }
+        public decimal TotalEmployeeCostPerYear { get; internal set; }
 
         public string ErrorDetails;
     }

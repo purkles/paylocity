@@ -10,8 +10,7 @@ namespace PaylocityBenefitsChallenge.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public decimal BenefitCostPerYear { get; internal set; }
-        public bool IsEligibleForDiscount { get; protected set; }
+        public bool IsEligibleForDiscount { get; private set; }
         public bool IsEmployee { get; private set; }
 
 
@@ -25,8 +24,9 @@ namespace PaylocityBenefitsChallenge.Entities
 
         private bool CheckIsEligibleForDiscount()
         {
+            // employees and dependents whose first or last name starts with the character A are eligible
             return FirstName.ToLower().StartsWith("a") || 
-                    LastName.ToLower().StartsWith("a") ? true : false;
+                    LastName.ToLower().StartsWith("a");
         }
     }
 }

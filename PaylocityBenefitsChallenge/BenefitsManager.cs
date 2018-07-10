@@ -10,39 +10,26 @@ namespace PaylocityBenefitsChallenge
         public const decimal EmployeeBenefitsCostPerYear = 1000.00m;
         public const decimal DependentBenefitsCostPerYear = 500.00m;
 
+        public BenefitsCostResult costResult = new BenefitsCostResult();
+
 
         public BenefitsCostResult GetEmployeeCost(BenefitEmployee employeeData)
-        {
-            BenefitsCostResult benefitsCostResult = new BenefitsCostResult();
-
+        {    
             try
             {
-                GetTotalBenefitsCostsForEmployee(employeeData);
+                costResult.TotalBenefitsCostPerYear = GetTotalBenefitsCostsForEmployee(employeeData);
 
-                benefitsCostResult.BenefitCostForEmployeeOnly = employeeData.Employee.BenefitCostPerYear;
-
-                if (employeeData.Dependents != null && employeeData.Dependents.Count > 0)
-                {
-                    foreach (var dependent in employeeData.Dependents)
-                    {
-                        benefitsCostResult.BenefitCostForDependentsOnly += dependent.BenefitCostPerYear;
-                    }
-                }
-
-                benefitsCostResult.BenefitsCostPerYear = benefitsCostResult.BenefitCostForEmployeeOnly +
-                                                         benefitsCostResult.BenefitCostForDependentsOnly;
-
-                benefitsCostResult.TotalEmployeeCostPerPayPeriod =
-                    GetEmployeeCostPerPayPeriod(benefitsCostResult.BenefitsCostPerYear);
-                benefitsCostResult.TotalEmployeeCostPerYear =
-                    GetEmployeeCostPerYear(benefitsCostResult.BenefitsCostPerYear);
+                costResult.TotalEmployeeCostPerPayPeriod =
+                    GetEmployeeCostPerPayPeriod(costResult.TotalBenefitsCostPerYear);
+                costResult.TotalEmployeeCostPerYear =
+                    GetEmployeeCostPerYear(costResult.TotalBenefitsCostPerYear);
             }
             catch (Exception ex)
             {
-                benefitsCostResult.ErrorDetails = ex.Message;
+                costResult.ErrorDetails = ex.Message;
             }
 
-            return benefitsCostResult;
+            return costResult;
         }
 
 
@@ -54,16 +41,17 @@ namespace PaylocityBenefitsChallenge
             {              
                 cost = GetBenefitsCost(employeeData.Employee);
 
-                employeeData.Employee.BenefitCostPerYear = cost;
+                costResult.BenefitCostForEmployeeOnly = cost;
 
                 if (employeeData.Dependents != null && employeeData.Dependents.Count > 0)
                 {
                     foreach (var dependent in employeeData.Dependents)
                     {
-                        dependent.BenefitCostPerYear = GetBenefitsCost(dependent);
-                        cost += dependent.BenefitCostPerYear;
+                        costResult.BenefitCostForDependentsOnly += GetBenefitsCost(dependent);
                     }
                 }
+
+                cost += costResult.BenefitCostForDependentsOnly;
             }
             catch (Exception ex)
             {

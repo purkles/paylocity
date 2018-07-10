@@ -41,11 +41,11 @@ namespace PaylocityBenefitsChallengeWeb.Controllers
 
                 benefitsEmployee.Dependents = dependents;
             }
-
+           
             var response = benefitsMgr.Value.GetEmployeeCost(benefitsEmployee);
 
             EmployeeCostModel responseModel = new EmployeeCostModel();
-            responseModel.TotalBenefitCost = response.BenefitsCostPerYear;
+            responseModel.TotalBenefitCost = response.TotalBenefitsCostPerYear;
             responseModel.EmployeeCostPerPayPeriod = response.TotalEmployeeCostPerPayPeriod;
             responseModel.EmployeeCostPerYear = response.TotalEmployeeCostPerYear;
 
