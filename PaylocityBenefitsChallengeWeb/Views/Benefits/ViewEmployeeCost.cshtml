@@ -1,0 +1,73 @@
+﻿@model PaylocityBenefitsChallengeWeb.Models.EmployeeCostModel
+
+@{
+    ViewBag.Title = "ViewEmployeeCost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewEmployeeCost</h2>
+
+<div>
+    <h4>BenefitsCostResult</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+    
+    <table class="table table-striped">
+       <tbody>
+        <tr>
+            <th scope="row">
+                @Html.LabelFor(m => m.TotalBenefitCost)
+            </th>
+            <td>
+                @Html.ValueFor(m => m.TotalBenefitCost)
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @Html.LabelFor(m => m.EmployeeCostPerPayPeriod)
+            </th>
+            <td>
+                @Html.ValueFor(m => m.EmployeeCostPerPayPeriod)
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @Html.LabelFor(m => m.EmployeeCostPerYear)
+            </th>
+            <td>
+                @Html.ValueFor(m => m.EmployeeCostPerYear)
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                @Html.LabelFor(m => m.TotalBenefitCost)
+            </div>
+            <div class="col-sm">
+                @Html.ValueFor(m => m.TotalBenefitCost)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                @Html.LabelFor(m => m.EmployeeCostPerPayPeriod)
+            </div>
+            <div class="col-sm">
+                @Html.ValueFor(m => m.EmployeeCostPerPayPeriod)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                @Html.LabelFor(m => m.EmployeeCostPerYear)
+            </div>
+            <div class="col-sm">
+                @Html.ValueFor(m => m.EmployeeCostPerYear)
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to Employee Benefits Cost", "Calculate")
+</p>

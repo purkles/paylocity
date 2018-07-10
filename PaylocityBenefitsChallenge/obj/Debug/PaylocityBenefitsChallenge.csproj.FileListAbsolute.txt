@@ -1,10 +1,6 @@
 C:\Projects\PaylocityBenefitsChallenge\PaylocityBenefitsChallenge\bin\Debug\PaylocityBenefitsChallenge.dll
 C:\Projects\PaylocityBenefitsChallenge\PaylocityBenefitsChallenge\bin\Debug\PaylocityBenefitsChallenge.pdb
-C:\Projects\PaylocityBenefitsChallenge\PaylocityBenefitsChallenge\bin\Debug\nunit.framework.dll
-C:\Projects\PaylocityBenefitsChallenge\PaylocityBenefitsChallenge\bin\Debug\nunit.framework.pdb
-C:\Projects\PaylocityBenefitsChallenge\PaylocityBenefitsChallenge\bin\Debug\nunit.framework.xml
-C:\Projects\PaylocityBenefitsChallenge\PaylocityBenefitsChallenge\obj\Debug\PaylocityBenefitsChallenge.csprojAssemblyReference.cache
 C:\Projects\PaylocityBenefitsChallenge\PaylocityBenefitsChallenge\obj\Debug\PaylocityBenefitsChallenge.csproj.CoreCompileInputs.cache
-C:\Projects\PaylocityBenefitsChallenge\PaylocityBenefitsChallenge\obj\Debug\PaylocityBenefitsChallenge.csproj.CopyComplete
 C:\Projects\PaylocityBenefitsChallenge\PaylocityBenefitsChallenge\obj\Debug\PaylocityBenefitsChallenge.dll
 C:\Projects\PaylocityBenefitsChallenge\PaylocityBenefitsChallenge\obj\Debug\PaylocityBenefitsChallenge.pdb
+C:\Projects\PaylocityBenefitsChallenge\PaylocityBenefitsChallenge\obj\Debug\PaylocityBenefitsChallenge.csprojAssemblyReference.cache

@@ -1,29 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit;
 using NUnit.Framework;
 using PaylocityBenefitsChallenge.Entities;
 
-namespace PaylocityBenefitsChallenge
+namespace PaylocityBenefitsChallenge.Tests
 {
     [TestFixture]
-     public class BenefitsManagerTests
+    public class BenefitsManagerTests
     {
 
         [Test, Explicit]
         public void Test_GetBenefitsCostForEmployeeOnly()
         {
-            BenefitEmployee employee = new BenefitEmployee();
-            
-            employee.Employee = new Person("John", "Doe");
+            BenefitEmployee employee = new BenefitEmployee("John", "Doe");
 
             BenefitsManager benefitsManager = new BenefitsManager();
-            var result = benefitsManager.GetBenefitsCostForEmployee(employee);
+            var result = benefitsManager.GetTotalBenefitsCostsForEmployee(employee);
 
-            Assert.AreEqual(1000.00m, result);
+            Assert.That(result, Is.EqualTo(1000.00m));
 
             return;
         }
@@ -31,14 +25,12 @@ namespace PaylocityBenefitsChallenge
         [Test, Explicit]
         public void Test_GetBenefitsCostForEmployeeOnlyWithDiscount()
         {
-            BenefitEmployee employee = new BenefitEmployee();
-
-            employee.Employee = new Person("Aaron", "Smith");
+            BenefitEmployee employee = new BenefitEmployee("Aaron", "Smith");
 
             BenefitsManager benefitsManager = new BenefitsManager();
-            var result = benefitsManager.GetBenefitsCostForEmployee(employee);
+            var result = benefitsManager.GetTotalBenefitsCostsForEmployee(employee);
 
-            Assert.AreEqual(900.00m, result);
+            Assert.That(result, Is.EqualTo(900.00m));
 
             return;
         }
@@ -46,17 +38,15 @@ namespace PaylocityBenefitsChallenge
         [Test, Explicit]
         public void Test_GetBenefitsCostForEmployeeWithOneDependentNoDiscount()
         {
-            BenefitEmployee employee = new BenefitEmployee();
-
-            employee.Employee = new Person("Sarah", "Lee");
+            BenefitEmployee employee = new BenefitEmployee("Sarah", "Lee");
 
             employee.Dependents = new List<Person>();
             employee.Dependents.Add(new Person("Bill", "Jones"));
 
             BenefitsManager benefitsManager = new BenefitsManager();
-            var result = benefitsManager.GetBenefitsCostForEmployee(employee);
+            var result = benefitsManager.GetTotalBenefitsCostsForEmployee(employee);
 
-            Assert.AreEqual(1500.00m, result);
+            Assert.That(result, Is.EqualTo(1500.00m));
 
             return;
         }
@@ -64,17 +54,15 @@ namespace PaylocityBenefitsChallenge
         [Test, Explicit]
         public void Test_GetBenefitsCostForEmployeeWithOneDependentBothDiscounts()
         {
-            BenefitEmployee employee = new BenefitEmployee();
-
-            employee.Employee = new Person("Anna", "Waters");
+            BenefitEmployee employee = new BenefitEmployee("Anna", "Waters");
 
             employee.Dependents = new List<Person>();
             employee.Dependents.Add(new Person("Andy", "Kirk"));
 
             BenefitsManager benefitsManager = new BenefitsManager();
-            var result = benefitsManager.GetBenefitsCostForEmployee(employee);
+            var result = benefitsManager.GetTotalBenefitsCostsForEmployee(employee);
 
-            Assert.AreEqual(1350.00m, result);
+            Assert.That(result, Is.EqualTo(1350.00m));
 
             return;
         }
@@ -82,9 +70,7 @@ namespace PaylocityBenefitsChallenge
         [Test, Explicit]
         public void Test_GetBenefitsCostForEmployeeWithFiveDependentsNoDiscounts()
         {
-            BenefitEmployee employee = new BenefitEmployee();
-
-            employee.Employee = new Person("George", "Wright");
+            BenefitEmployee employee = new BenefitEmployee("George", "Wright");
 
             employee.Dependents = new List<Person>();
             employee.Dependents.Add(new Person("Bob", "Wright"));
@@ -94,9 +80,9 @@ namespace PaylocityBenefitsChallenge
             employee.Dependents.Add(new Person("Frank", "Wright"));
 
             BenefitsManager benefitsManager = new BenefitsManager();
-            var result = benefitsManager.GetBenefitsCostForEmployee(employee);
+            var result = benefitsManager.GetTotalBenefitsCostsForEmployee(employee);
 
-            Assert.AreEqual(3500.00m, result);
+            Assert.That(result, Is.EqualTo(3500.00m));
 
             return;
         }
@@ -104,9 +90,7 @@ namespace PaylocityBenefitsChallenge
         [Test, Explicit]
         public void Test_GetBenefitsCostForEmployeeWithFiveDependentsWithDiscounts()
         {
-            BenefitEmployee employee = new BenefitEmployee();
-
-            employee.Employee = new Person("George", "Wright");
+            BenefitEmployee employee = new BenefitEmployee("George", "Wright");
 
             employee.Dependents = new List<Person>();
             employee.Dependents.Add(new Person("Bob", "Wright"));
@@ -116,9 +100,9 @@ namespace PaylocityBenefitsChallenge
             employee.Dependents.Add(new Person("Frank", "Wright"));
 
             BenefitsManager benefitsManager = new BenefitsManager();
-            var result = benefitsManager.GetBenefitsCostForEmployee(employee);
+            var result = benefitsManager.GetTotalBenefitsCostsForEmployee(employee);
 
-            Assert.AreEqual(3400.00m, result);
+            Assert.That(result, Is.EqualTo(3400.00m));
 
             return;
         }
@@ -131,7 +115,7 @@ namespace PaylocityBenefitsChallenge
             BenefitsManager benefitsManager = new BenefitsManager();
             var result = benefitsManager.GetEmployeeCostPerPayPeriod(benefitsCost);
 
-            Assert.AreEqual(2038.46m, result);
+            Assert.That(result, Is.EqualTo(2038.46m));
         }
 
         [Test, Explicit]
@@ -142,7 +126,7 @@ namespace PaylocityBenefitsChallenge
             BenefitsManager benefitsManager = new BenefitsManager();
             var result = benefitsManager.GetEmployeeCostPerPayPeriod(benefitsCost);
 
-            Assert.AreEqual(2000.00m, result);
+            Assert.That(result, Is.EqualTo(2000.00m));
         }
 
         [Test, Explicit]
@@ -153,7 +137,7 @@ namespace PaylocityBenefitsChallenge
             BenefitsManager benefitsManager = new BenefitsManager();
             var result = benefitsManager.GetEmployeeCostPerPayPeriod(benefitsCost);
 
-            Assert.AreEqual(2000.00m, result);
+            Assert.That(result, Is.EqualTo(2000.00m));
         }
 
         [Test, Explicit]
@@ -162,9 +146,9 @@ namespace PaylocityBenefitsChallenge
             decimal benefitsCost = 1000.00m;
 
             BenefitsManager benefitsManager = new BenefitsManager();
-            var result = benefitsManager.GetEmployeeCostPerPayYear(benefitsCost);
+            var result = benefitsManager.GetEmployeeCostPerYear(benefitsCost);
 
-            Assert.AreEqual(53000.00m, result);
+            Assert.That(result, Is.EqualTo(53000.00m));
         }
 
         [Test, Explicit]
@@ -173,9 +157,24 @@ namespace PaylocityBenefitsChallenge
             decimal benefitsCost = 0.00m;
 
             BenefitsManager benefitsManager = new BenefitsManager();
-            var result = benefitsManager.GetEmployeeCostPerPayYear(benefitsCost);
+            var result = benefitsManager.GetEmployeeCostPerYear(benefitsCost);
 
-            Assert.AreEqual(52000.00m, result);
+            Assert.That(result, Is.EqualTo(52000.00m));
+        }
+
+        [Test, Explicit]
+        public void Test_GetTotalEmployeeCostData()
+        {
+           var employee = new BenefitEmployee("test", "person");
+            employee.Dependents = new List<Person>();
+            employee.Dependents.Add(new Person("dependent", "one"));
+            employee.Dependents.Add(new Person("dependent", "two"));
+            employee.Dependents.Add(new Person("dependent", "three"));
+
+            BenefitsManager benefitsManager = new BenefitsManager();
+            var result = benefitsManager.GetEmployeeCost(employee);
+
+            Assert.That(result, Is.EqualTo(52000.00m));
         }
     }
 }
